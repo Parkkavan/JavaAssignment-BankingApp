@@ -1,5 +1,7 @@
 package com.dto;
 
+import java.util.Objects;
+
 public class AccountBalance {
 
 	private int id;
@@ -32,6 +34,23 @@ public class AccountBalance {
 	@Override
 	public String toString() {
 		return "AccountBalance [id=" + id + ", balance=" + balance + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(balance, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AccountBalance other = (AccountBalance) obj;
+		return Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance) && id == other.id;
 	}
 	
 	

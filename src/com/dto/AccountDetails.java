@@ -1,6 +1,7 @@
 package com.dto;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AccountDetails {
 
@@ -106,6 +107,28 @@ public class AccountDetails {
 	public String toString() {
 		return "AccountDetails [firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", aid=" + aid
 				+ ", accountType=" + accountType + ", balance=" + balance + ", customerId=" + customerId + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountType, aid, balance, customerId, dob, firstName, lastName);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AccountDetails other = (AccountDetails) obj;
+		return Objects.equals(accountType, other.accountType) && aid == other.aid
+				&& Double.doubleToLongBits(balance) == Double.doubleToLongBits(other.balance)
+				&& customerId == other.customerId && Objects.equals(dob, other.dob)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName);
 	}
 
 

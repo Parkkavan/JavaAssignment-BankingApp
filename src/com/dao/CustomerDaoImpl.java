@@ -53,6 +53,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		
 		int result=pstmt.executeUpdate();
 		
+		DBUtil.dbClose();
 		if(result==1)
 		{
 			return "Deposit successfull";
@@ -163,6 +164,8 @@ public class CustomerDaoImpl implements CustomerDao{
 		pstmt.setDouble(1,balance-amount);
 		pstmt.setInt(2,accId);
 		pstmt.executeUpdate();
+		
+		DBUtil.dbClose();
 	}
 
 

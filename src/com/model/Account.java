@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.Objects;
+
 public class Account {
 	private int id;
 	private String accountType;
@@ -52,6 +54,24 @@ public class Account {
 	public String toString() {
 		return "Account [id=" + id + ", accountType=" + accountType + ", balance=" + balance + ", customerId="
 				+ customerId + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(accountType, balance, customerId, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Account other = (Account) obj;
+		return Objects.equals(accountType, other.accountType) && Objects.equals(balance, other.balance)
+				&& customerId == other.customerId && id == other.id;
 	}
 	
 	
